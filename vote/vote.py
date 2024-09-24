@@ -1,4 +1,4 @@
-from random import randint
+
 tab=(
   {"votants":3273 , "choix":[1,5,4,2,3]},
   {"votants":2182, "choix":[5,1,4,3,2]},
@@ -8,15 +8,30 @@ tab=(
   {"votants":364 , "choix":[5,4,2,3,1]}
 )
 
+def maxim(t):
+    max=0
+    for p in range(len(t)):
+        if t[p]>max:
+            max=t[p]
+            imax=p
+    return imax
 
 
 def SystemeDeBorda (tab):
     #chaque candidat a un nombre de point attribues en fonction des votes
-    for j in
-    t=[]*len(tab[0]["choix"])
-    for i in range(len(tab[0]["choix"])):
-      if tab[0]['choix'][i] == 1:
-        t[i]=5
-      elif tab[0]['choix'][i]==2:
-        t[i]=4
-  
+    nbCandidat=len(tab[0]["choix"])
+    t=[0]*nbCandidat
+    for j in range(len(tab)):
+        nbVotant=tab[j]["votants"]
+        for i in range(nbCandidat):
+            if tab[j]['choix'][i] == 1:
+                t[i]+=5*nbVotant
+            elif tab[j]['choix'][i]==2:
+                t[i]+=4*nbVotant
+            elif tab[j]['choix'][i]==3:
+                t[i]+=3*nbVotant
+            elif tab[j]['choix'][i]==4:
+                t[i]+=2*nbVotant
+            elif tab[j]['choix'][i]==5:
+                t[i]+=1*nbVotant
+    return "le gagant est le candidat" + str(maxim(t))
