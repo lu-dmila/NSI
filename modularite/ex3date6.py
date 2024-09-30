@@ -18,3 +18,19 @@ def enumere(s):
             if s[j]&2**i ==1:
                 tab.append(i+64*j)
     return tab
+
+
+def tranche(t,i,j):
+    tab=[]
+    if j>i:
+        return[t[k]for k in range(i,j)]
+    else:
+        return[]
+
+def concatenate(t1,t2):
+    t3=[]
+    for elm in t1:
+        t3.append(elm)
+    for elm in t2:
+        t3.append(elm)
+    return t3
