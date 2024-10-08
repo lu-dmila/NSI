@@ -9,29 +9,62 @@ tab=(
 )
 
 def maxim(t):
-    max=0
+    maxi=0
+    imax=None
     for p in range(len(t)):
-        if t[p]>max:
-            max=t[p]
+        if t[p]>maxi:
+            maxi=t[p]
             imax=p
     return imax
 
-
 def SystemeDeBorda (tab):
     #chaque candidat a un nombre de point attribues en fonction des votes
+
     nbCandidat=len(tab[0]["choix"])
     t=[0]*nbCandidat
     for j in range(len(tab)):
+          b=0
         nbVotant=tab[j]["votants"]
         for i in range(nbCandidat):
-            if tab[j]['choix'][i] == 1:
-                t[i]+=5*nbVotant
-            elif tab[j]['choix'][i]==2:
-                t[i]+=4*nbVotant
-            elif tab[j]['choix'][i]==3:
-                t[i]+=3*nbVotant
-            elif tab[j]['choix'][i]==4:
-                t[i]+=2*nbVotant
-            elif tab[j]['choix'][i]==5:
-                t[i]+=1*nbVotant
-    return "le gagant est le candidat" + str(maxim(t))
+            b+=1
+            t[i]+=(nbCandidat-b+1)*nbVotant
+    return "le gagnant est le candidat" + str(maxim(t))
+
+def minim(t):
+       mini=float('inf')
+       imin=None
+               for p in range(len(t)):
+                      if t[p]<mini:
+                               mini=t[p]
+                               imin=p
+        return imin
+
+def LastManStanding (tab):
+    #a chaque tours le candidat ayant le moins de votes est elimine
+    t=[]
+    for votes in tab:
+        for candidats in tab["choix"]:
+            if candidats not in t:
+                t.append(candidats)
+    while len (t) > 1:
+        tabvote=[0]*len(t)
+        for votes in tab:
+            a=0
+            for candidats in votes["choix"]:
+                if votes["choix"][a]==1:
+                    tabvote[a]+=votes[a]
+                    a+=1
+        tabvote.pop(minim(tabvote))
+        t.pop(minim(tabvote))
+    return "le gagnant est le candidat" + str(t)    
+
+def unTours(tab):
+    #le plus de vote gagne
+      gagnant=0
+    candidats=[0]*len(tab)
+    for i in range( len(tab)):
+        candidats[i]=tab[i]["votants"]
+    for j in range (tab[maxim(candidats)]["choix"]):
+          if tab[maxim(candidats)]["choix"][j]==1:
+                         gagnant=j
+     return "le gagnant est le candidat" + str(gagnant)
