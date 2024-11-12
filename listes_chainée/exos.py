@@ -40,3 +40,27 @@ def trouve(x,lst):
         o= trouve(x,lst.suivante)
     else:
         return lst.valeur
+
+def identique(l1,l2):
+    if l1 is None:
+        if l2 is None:
+            return True
+        else:
+            return False
+    elif l2 is None:
+        return False
+    elif l1.valeur == l2.valeur:
+        return identique(l1.suivante,l2.suivante)
+    else:
+        return False
+    
+def inserer(x,lst):
+    if lst is None:
+        return Cellule(x,None)
+    elif lst.valeur>=x:
+        return Cellule(x,lst)
+    else:
+        return Cellule(lst.valeur,inserer(x,lst.suivante))
+
+
+
