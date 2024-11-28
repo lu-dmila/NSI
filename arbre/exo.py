@@ -4,17 +4,8 @@ class Noeud:
         self.droit=d
         self.valeur=v
 
-
-def str_arbre(a):
-    c=""
-    if a!=None:
-        while a.gauche!=None:
-            c+="("+str(a.gauche)
-            a.gauche= a.gauche.gauche
-        c+=")"
-
-        
-        
-        
-        
-        print("("+c+"(")
+def parfait(h):
+    if h==0:
+        return None
+    else:
+       return Noeud(parfait(h-1), h, parfait(h-1))
