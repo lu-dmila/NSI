@@ -1,3 +1,5 @@
+from random import randint
+
 class Noeud:
     def ___init___(self,g,v,d):
         self.gauche=g
@@ -19,7 +21,10 @@ def ajoute2(x,a):
     
 def remplir(a,t):
     if a is None:
-        return t    
+        return None
+    remplir(a.gauche,t)
+    t.append(a.valeur)
+    remplir(a.droit,t)    
     
 def appartient(x,a):
     if a is None:
@@ -62,8 +67,24 @@ class ABR:
 
     def supp(self,x):
         return supprime(x,self)
-        
     
+    def lister(self):
+        t=[]
+        remplir(self.racine,t)
+        return t
+        
+def trier(t):
+    a=ABR()
+    for i in t:
+        a.ajouter(i)
+    return a.lister()
+
+def melange(t):
+    for i in range(len(t)):
+        j=randint(0,i)
+        t[i],t[j]==t[j],t[i]
+
+
 def minimum(a):
     if a is None:
         return None
