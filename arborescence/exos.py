@@ -1,15 +1,15 @@
+import os
 class Noeud:
-    def ___init___(self,v,f):
+    def __init__(self,v,f):
         self.valeur=v
         self.fils=f
 
-def parcours_prefixe(a):
-    ch=a.valeur
-    for f in a.fils:
-        ch+=parcours_prefixe(f)
-    return ch
+def fonction_repertoires(r):
+    abr=Noeud(r,[])
+    if os.path.isdir(r)==True:
+        t=os.listdir(r)
+        for elt in t:
+            abr.fils.append(fonction_repertoires(os.path.join(r,elt)))
+    return abr
 
-
-def affiche(a,c):
-    ch=a.valeur
-    
+fonction_repertoires("/home/tnsi-eleve4/Documents/NSI/arbre/")
