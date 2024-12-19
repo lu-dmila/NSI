@@ -12,6 +12,7 @@ class Simulateur:
         self.nbGuichets=None
         self._totalAttente=None
 
+
     def config(self):
         #lorna
         """configure le simulateur selon les inputs des utilisateurs"""
