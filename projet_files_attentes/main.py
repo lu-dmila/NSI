@@ -11,10 +11,8 @@ class Repartiteur:
     def __init__(self,s):
         self.attenteTotale=0
         self.files=[]
-        self.
-        
-        
-         simul=s
+        self.simul=s
+            
     def entree_client(self):
         """ajoute un entier représentant le tour d'arrivée du client"""
         raise NotImplemented()
@@ -66,8 +64,16 @@ class RepartiteurChoix(Repartiteur):
             f=File()
             self.files.append(f)
 
+    def _lenfiles(self) -> list :
+        lenfiles=[]
+        for file in self.files :
+            lenfiles.append[len(file)]
+        return lenfiles
+
     def entree_client(self):
-        pass
+        c=_creerClient()
+        ifile = min(self._lenfiles())
+        self.files[ifile].ajouter(c)
 
     def sortie_client(self, num):
         pass
@@ -76,7 +82,6 @@ class Client:
     #lorna
     def __init__(self,tick):
         self.temps_arrivee=tick
-
 
 class Guichet:
     #ludivine
