@@ -11,7 +11,10 @@ class Repartiteur:
     def __init__(self,s):
         self.attenteTotale=0
         self.files=[]
-        self.simul=s
+        self.
+        
+        
+         simul=s
     def entree_client(self):
         """ajoute un entier représentant le tour d'arrivée du client"""
         raise NotImplemented()
@@ -77,11 +80,18 @@ class Client:
 
 class Guichet:
     #ludivine
-    def __init__(self, s):
+    def __init__(self, s, num):
         self.simul = s
         self.traitement = None #jsp, a completer
+        self.numero = num
 
     def tour(self):
         #appelle sortie client du repartiteur
         #fait : self.simul._clientsServis += 1 lorsqu'un client est traité (sort du guichet)
-        pass
+        self.traitement=randint(1, maxTour)
+        if self.traitement>0:
+            self.traitement-=1
+        else:
+            self.simul._clientsServis +=1
+            self.sortie_client(self.num)
+
