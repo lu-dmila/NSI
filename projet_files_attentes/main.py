@@ -29,12 +29,13 @@ class RepartiteurUn(Repartiteur):
         self.files.append(f)
 
     def entree_client(self):
-        c = _creerClient()
+        c = _creerClient(self.simul._tick)
         self.files[0].ajouter(c)
 
-    def sortie_client(self, num):
-        c=self.files[0].retirer()
-        self.simul._totalAttente += (self.simul._tick - c.temps_arrivee)
+    def sortie_client(self, num=1):
+        if not self.files[0].est_vide():
+            c=self.files[0].retirer()
+            self.simul._totalAttente += (self.simul._tick - c.temps_arrivee)
 
 
 class RepartiteurAlea(Repartiteur):
@@ -45,15 +46,15 @@ class RepartiteurAlea(Repartiteur):
             self.files.append(f)
         
     def entree_client(self):
-        c=_creerClient()
+        c=_creerClient(self.simul._tick)
         ifile = randint(0, len(self.files)-1)
         self.files[ifile].ajouter(c)
 
-
     def sortie_client(self, num):
         #soit num le numero identifiant du guichet entre 1 et nbGuichets du simulateur inclus
-        c = self.files[num-1].retirer()#-1 car passage de numero à indice ds le tableau files
-        self.simul._totalAttente += (self.simul._tick - c.temps_arrivee)
+        if not self.files[num-1].est_vide():
+            c = self.files[num-1].retirer()#-1 car passage de numero à indice ds le tableau files
+            self.simul._totalAttente += (self.simul._tick - c.temps_arrivee)
         #on peut faire en sorte de renvoyer le client retirer ( pour le guichet.) Souhaitable ?
         
 
@@ -71,7 +72,7 @@ class RepartiteurChoix(Repartiteur):
         return lenfiles
 
     def entree_client(self):
-        c=_creerClient()
+        c=_creerClient(self.simul._tick)
         ifile = min(self._lenfiles())
         self.files[ifile].ajouter(c)
 
@@ -82,6 +83,9 @@ class Client:
     #lorna
     def __init__(self,tick):
         self.temps_arrivee=tick
+
+    def __str__(self):
+        return str(self.temps_arrivee)
 
 class Guichet:
     #ludivine
@@ -99,4 +103,3 @@ class Guichet:
         else:
             self.simul._clientsServis +=1
             self.sortie_client(self.num)
-
