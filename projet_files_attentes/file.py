@@ -5,12 +5,22 @@ class Cellule:
         self._suivante=s
         
     def __len__(self):
+        #lorna
         if self is None :
             return 0
         if self._suivante is None :
             return 1
         else :
             return 1+len(self._suivante)
+        
+    def __str__(self):
+        #lorna
+        if self is None :
+            return ""
+        if self._suivante is None :
+            return str(self._valeur)
+        else :
+            return str(self._valeur) + ";" + str(self._suivante)
 
 class File:
     """structure de file"""
@@ -39,7 +49,15 @@ class File:
         return v
         
     def __len__(self):
+        #lorna
         if self.est_vide():
             return 0
         else :
-            return len(self._tete)
+            return len(self._tete) 
+        
+    def __str__(self):
+        #lorna
+        if self.est_vide():
+            return ""
+        else :
+            return str(self._tete)
