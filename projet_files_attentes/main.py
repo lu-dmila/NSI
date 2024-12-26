@@ -56,7 +56,7 @@ class RepartiteurAlea(Repartiteur):
             c = self.files[num-1].retirer()#-1 car passage de numero à indice ds le tableau files
             self.simul._totalAttente += (self.simul._tick - c.temps_arrivee)
         #on peut faire en sorte de renvoyer le client retirer ( pour le guichet.) Souhaitable ?
-        
+
 
 class RepartiteurChoix(Repartiteur):
     def __init__(self, s):
@@ -67,18 +67,30 @@ class RepartiteurChoix(Repartiteur):
 
     def _lenfiles(self) -> list :
         lenfiles=[]
-        for file in self.files :
-            lenfiles.append[len(file)]
+        for i in range(len(self.files)):
+            lenfiles.append(len(self.files[i]))
         return lenfiles
 
+    def _imin_file(self) :
+        lenfiles=self._lenfiles()
+        lenmin=lenfiles[0]
+        imin=0
+        for i in range(1, len(lenfiles)):
+            if lenfiles[i]<lenmin :
+                imin = i
+        return imin
+                       
     def entree_client(self):
         c=_creerClient(self.simul._tick)
-        ifile = min(self._lenfiles())
+        ifile = self._imin_file()
         self.files[ifile].ajouter(c)
 
     def sortie_client(self, num):
-        pass
-    
+        if not self.files[num-1].est_vide():
+            c = self.files[num-1].retirer()   
+            self.simul._totalAttente += (self.simul._tick - c.temps_arrivee)
+
+
 class Client:
     #lorna
     def __init__(self,tick):
@@ -86,7 +98,6 @@ class Client:
 
     def __str__(self):
         return str(self.temps_arrivee)
-
 class Guichet:
     #ludivine
     def __init__(self, s, num):
