@@ -109,7 +109,7 @@ class Guichet:
     def tour(self):
         #appelle sortie client du repartiteur, est utilisé a chaque tick
         #fait : si le guichet est occuper on soustré le temps restant, si il est libre on prend un nouveau client et augmente le nb de clients servis.
-        self.traitement=randint(1, maxTour)
+        self.traitement=randint(1, self.simul.max)
         if self.traitement>0:
             self.traitement-=1
         else:
