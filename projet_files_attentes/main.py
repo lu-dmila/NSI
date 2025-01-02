@@ -98,19 +98,20 @@ class Client:
 
     def __str__(self):
         return str(self.temps_arrivee)
+            
 class Guichet:
     #ludivine
-    def __init__(self, s, num):
+    def __init__(self, s, num): #definir max tour
         self.simul = s
-        self.traitement = None #jsp, a completer
+        self.traitement = 0
         self.numero = num
 
     def tour(self):
-        #appelle sortie client du repartiteur
-        #fait : self.simul._clientsServis += 1 lorsqu'un client est traité (sort du guichet)
+        #appelle sortie client du repartiteur, est utilisé a chaque tick
+        #fait : si le guichet est occuper on soustré le temps restant, si il est libre on prend un nouveau client et augmente le nb de clients servis.
         self.traitement=randint(1, maxTour)
         if self.traitement>0:
             self.traitement-=1
         else:
             self.simul._clientsServis +=1
-            self.sortie_client(self.num)
+            self.sortie_client(self.numero)
