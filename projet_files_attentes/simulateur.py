@@ -1,8 +1,10 @@
+
 class Simulateur:
     repartiteurs = {"Un" : "RepartiteurUn", "Alea" : "RepartiteurAlea", "Choix" : "RepartiteurChoix"}
 
     def __init__(self):
         self._repartiteur=None
+<<<<<<< HEAD
         self._tick=0
         self._clientsServis=0
         self.max=0
@@ -11,6 +13,15 @@ class Simulateur:
         self.nbGuichets=0
         self._totalAttente=None
         self.guichets=[]
+=======
+        self._tick=None
+        self._clientsServis=None
+        self.max=None
+        self.nbTours=None
+        #attributs rajoutés
+        self.nbGuichets=None
+        self._totalAttente=None
+>>>>>>> 8a8e37c80729120a82e28233ddae0f1d9f8114f1
 
 
     def config(self):
@@ -24,6 +35,7 @@ class Simulateur:
         self.max = input()
         print("nombres de tours de la simulation ?")
         self.nbTours = input()
+<<<<<<< HEAD
 
     def demarre(self):
         """lance la simulation et retourne le nombre de clients servis et l'attente totale"""
@@ -35,3 +47,17 @@ class Simulateur:
             self.repartiteur.entree_client()
             self._tick-=1
         return ("clients servis : "+str(self._clientsServis), "attente totale : "+str(self._totalAttente))
+=======
+
+
+    def demarre(self):
+        """lance la simulation et retourne le nombre de clients servis et l'attente totale"""
+        #boucle qui decremente tick(tt le tps)(actions entre)
+        self._tick = 0
+        #...
+        return ("clients servis : "+str(self._clientsServis), "attente totale : "+str(self._totalAttente))
+
+
+
+
+>>>>>>> 8a8e37c80729120a82e28233ddae0f1d9f8114f1

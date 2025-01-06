@@ -61,4 +61,7 @@ class File:
             return ""
         else :
             return str(self._tete)
+<<<<<<< HEAD
     
+=======
+>>>>>>> 8a8e37c80729120a82e28233ddae0f1d9f8114f1

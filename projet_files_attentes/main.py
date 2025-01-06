@@ -101,10 +101,13 @@ class Client:
             
 class Guichet:
     #ludivine
+
     def __init__(self, s, num): 
         self.simul = s
         self.traitement = 0
         self.numero = num #numero du guichet
+
+
 
     def tour(self):
         #appelle sortie client du repartiteur, est utilisé a chaque tick
@@ -113,5 +116,10 @@ class Guichet:
         if self.traitement>0:
             self.traitement-=1
         else:
+<<<<<<< HEAD
             self.simul._repartiteur.sortie_client(self.numero)
             self.simul._clientsServis +=1
+=======
+            self.simul._clientsServis +=1
+            self.sortie_client(self.numero)
+>>>>>>> 8a8e37c80729120a82e28233ddae0f1d9f8114f1
