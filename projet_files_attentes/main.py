@@ -41,7 +41,7 @@ class RepartiteurUn(Repartiteur):
 class RepartiteurAlea(Repartiteur):
     def __init__(self, s):
         super().__init__(s)
-        for _ in range(self.simul.nbGuichets):
+        for _ in range(len(self.simul.guichets)):
             f=File()
             self.files.append(f)
         
@@ -61,7 +61,7 @@ class RepartiteurAlea(Repartiteur):
 class RepartiteurChoix(Repartiteur):
     def __init__(self, s):
         super().__init__(s)
-        for _ in range(self.simul.nbGuichets):
+        for _ in range(len(self.simul.guichets)):
             f=File()
             self.files.append(f)
 
