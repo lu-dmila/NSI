@@ -50,14 +50,8 @@ class Simulateur:
                 self.guichets[i].tour()  #num du guichet dans Guichet???
             self.repartiteur.entree_client()
             self._tick-=1
-        return ("clients servis : "+str(self._clientsServis), "attente totale : "+str(self._totalAttente))
-
-    def demarre(self):
-        """lance la simulation et retourne le nombre de clients servis et l'attente totale"""
-        #boucle qui decremente tick(tt le tps)(actions entre)
-        self._tick = 0
-        #...
-        return ("clients servis : "+str(self._clientsServis), "attente totale : "+str(self._totalAttente))
+        return ("clients servis : "+str(self._clientsServis), "attente totale : "+str(self._totalAttente)
+    
         
 
 def int_valide(elem : str):
