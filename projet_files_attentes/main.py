@@ -41,7 +41,7 @@ class RepartiteurUn(Repartiteur):
 class RepartiteurAlea(Repartiteur):
     def __init__(self, s):
         super().__init__(s)
-        for _ in range(self.simul.nbGuichets):
+        for _ in range(len(self.simul.guichets)):
             f=File()
             self.files.append(f)
         
@@ -61,7 +61,7 @@ class RepartiteurAlea(Repartiteur):
 class RepartiteurChoix(Repartiteur):
     def __init__(self, s):
         super().__init__(s)
-        for _ in range(self.simul.nbGuichets):
+        for _ in range(len(self.simul.guichets)):
             f=File()
             self.files.append(f)
 
@@ -116,10 +116,6 @@ class Guichet:
         if self.traitement>0:
             self.traitement-=1
         else:
-<<<<<<< HEAD
+
             self.simul._repartiteur.sortie_client(self.numero)
             self.simul._clientsServis +=1
-=======
-            self.simul._clientsServis +=1
-            self.sortie_client(self.numero)
->>>>>>> 8a8e37c80729120a82e28233ddae0f1d9f8114f1
