@@ -4,4 +4,4 @@ from main import *
 
 s=Simulateur()
 s.demarre()
-a=1
+a=0
