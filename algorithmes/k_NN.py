@@ -34,4 +34,15 @@ def dist_min(lexique,m):
             min=lexique[i+1]
     return min
 
-print (dist_min(["amer","ramer","arbre","arabe","atistique","artiste","art","navigation"],"navigati"))
+print (dist_min(["amer","ramer","arbre","arabe","atistique","artiste","art","navigation"],""))
+
+#ex4
+def test(c,d):
+    j=0
+    dec=0
+    while j <len(c):
+        if c[j]!=d[j+dec]:
+            dec+=1
+            j+=1
+    return dec<=1
+
