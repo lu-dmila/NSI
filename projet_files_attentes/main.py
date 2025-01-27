@@ -100,7 +100,6 @@ class Client:
         return str(self.temps_arrivee)
             
 class Guichet:
-    #ludivine
 
     def __init__(self, s, num): 
         self.simul = s
