@@ -31,7 +31,7 @@ class RepartiteurUn(Repartiteur):
     def entree_client(self):
         c = _creerClient(self.simul._tick)
         self.files[0].ajouter(c)
-
+    
     def sortie_client(self, num=1):
         if not self.files[0].est_vide():
             c=self.files[0].retirer()
@@ -105,16 +105,21 @@ class Guichet:
         self.simul = s
         self.traitement = 0
         self.numero = num #numero du guichet
-
+        self.avecClient = False
 
 
     def tour(self):
-        #appelle sortie client du repartiteur, est utilisé a chaque tick
-        #fait : si le guichet est occuper on soustré le temps restant, si il est libre on prend un nouveau client et augmente le nb de clients servis.
-        self.traitement=randint(1, self.simul.max)
-        if self.traitement>0:
-            self.traitement-=1
+        """soustrait le temps de tratement restant si le gichet est occupé, sinon prend un nouveau client
+     et augmente le nombre de client servis"""
+    # Si le guichet est occupé, on continue de réduire le temps de traitement
+        if self.traitement > 0:
+            self.traitement -= 1
         else:
-
-            self.simul._repartiteur.sortie_client(self.numero)
-            self.simul._clientsServis +=1
+        # Si le guichet est libre, on retire un client de la file d'attente et on l'enregistre comme traité
+            if self.avecClient == True :
+                self.simul._repartiteur.sortie_client(self.numero)
+                self.avecClient = False
+                self.simul._clientsServis += 1
+            if self.simul._repartiteur.files[0]._longueur > 0 :  # s'il y a encore des clients dans la file
+                self.traitement = randint(1, self.simul.max)
+                self.avecClient = True

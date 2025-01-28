@@ -76,9 +76,10 @@ class Simulateur:
         """lance la simulation et retourne le nombre de clients servis et l'attente totale"""
         #boucle qui agmt tick(tt le tps)(actions entre) lance un tour sur tous les guichets et ajoute un client a la file.
         self.config()
-        while self._tick != self.nbTours:
-            for i in range( len(self.guichets)): 
-                self.guichets[i].tour()  #num du guichet dans Guichet???
-            self._repartiteur.entree_client()
-            self._tick+=1
-        print ("clients servis : "+str(self._clientsServis), "attente totale : "+str(self._totalAttente))
+        while self._tick <= self.nbTours:
+            for guichet in self.guichets:
+                 guichet.tour()  # Traite les clients à chaque tick
+            self._repartiteur.entree_client()  # Ajoute un nouveau client si nécessaire
+            self._tick += 1
+        print("Clients servis:", self._clientsServis)
+        print("Temps d'attente total:", self._totalAttente)
