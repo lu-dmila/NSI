@@ -72,8 +72,45 @@ divise((8,(1,(3,(0,(1,(2,(5,(None)))))))))
 
 
 #ex7
-def deplace(a,b,c,k):
+
+
+class Cellule:
+    def __init__(self,v,s):
+        self.valeur=v
+        self.suivante=s
+
+class Pile:
+    def __init__(self):
+        self._contenu=None
+
+    def est_vide(self):
+        return self._contenu is None
+    
+    def empiler(self, e):
+        self._contenu=Cellule(e,self._contenu)
+
+    def depiler(self):
+        if self.est_vide():
+            raise IndexError("depile une pile vide")
+        v=self._contenu.valeur
+        self._contenu=self._contenu.suivante
+        return v
+    
+#ex9
+def hannoi (k):
+    a=Pile()
+    b=Pile()
+    c=Pile()
+    for i in range (k-1):
+        a.empiler(i)
+    deplacement_bis(a,b,c,k)
+
+def deplacement_bis(a,b,c,k):
     if k==1:
-        print("déplace"+str(a)+"vers"+str(b))
+        d=a.depiler()
+        b.empiler(d)
     else:
-        print("deplce"str(a)+"vers")
+        deplacement_bis(a,c,b,k-1)
+        deplacement_bis(a,b,c,1)
+        deplacement_bis(c,b,a,k-1)
+
