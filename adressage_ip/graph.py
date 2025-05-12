@@ -1,4 +1,3 @@
-#matrice
 class Graphe:
     def __init__(self,n):
         self.n=n
@@ -65,30 +64,3 @@ class Graphe2 :
     def degre(self,s):
         nb=len(self.adj[s]) 
         return nb
-    
-    def nb_arcs(self):
-        pass
-
-
-#ex3
-def parcours_largeur(g,source):
-    dist={source:0}
-    courant={source}
-    suivant=set()
-    while len(courant)>0:
-        s=courant.pop()
-        for v not in dist:
-            suivant.add(v)
-            dist[v]=dist[s]+1
-        if len(courant)==0:
-            courant,suivant=suivant,set()
-    return dist
-
-def distance(g,u,v):
-    dist= parcours_largeur(g,u)
-    return dist[v] if v in dist else None
-
-assert distance(g,occitanie,ocitanie)==0
-assert distance (g, bretagne, occitanie)
-assert distance (g,guadeloupe,martinique)
-
