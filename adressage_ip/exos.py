@@ -25,4 +25,28 @@ assert distance(g,"Normandie","Normandie")==0
 assert distance(g,"Normandie","Bretagne")
 assert distance(g,"Guyane","Martinique")
 
-#
+#ex7
+class Noeud:
+    def ___init___(self,g,v,d):
+        self.gauche=g
+        self.droit=d
+        self.valeur=v
+
+def parcours_largeur_arbres(abr):
+    """parcours en largeur depuis le sommet source"""
+    dist = {abr.valeur: 0}
+    courant = {abr.valeur}
+    suivant = set()
+    while len(courant) > 0:
+        s = courant.pop()
+        d=s.droit
+        g=s.gauche
+        if d.valeur not in dist:
+                suivant.add(d.valeur)
+                dist[d.valeur] = dist[abr.valeur] + 1
+        if g.valeur not in dist:
+                suivant.add(g.valeur)
+                dist[g.valeur] = dist[abr.valeur] + 1
+        if len(courant) == 0:
+            courant, suivant = suivant, set()
+    return dist
